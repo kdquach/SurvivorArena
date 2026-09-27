@@ -31,9 +31,22 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    private void Die()
+    
+void Die()
+{
+    GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+    if (player != null)
     {
-        Debug.Log("Enemy has been defeated!");
-        Destroy(gameObject);
+        PlayerExperience experience =
+            player.GetComponent<PlayerExperience>();
+
+        if (experience != null)
+        {
+            experience.GainXP(10);
+        }
     }
+
+    Destroy(gameObject);
+}
 }
